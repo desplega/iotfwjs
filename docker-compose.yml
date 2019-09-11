@@ -20,10 +20,12 @@ services:
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
-#      - MONGODB_USER="user" 
-#      - MONGODB_PASS="pass"
+#      - MONGO_INITDB_ROOT_USERNAME=admin
+#      - MONGO_INITDB_ROOT_PASSWORD=admin123
+#      - MONGO_INITDB_DATABASE=iotfwjs      
     volumes:
-      - "./data:/data"
+      # This does not work in Window
+      - ./data:/data
     ports:
       - "27017:27017"
     networks:
