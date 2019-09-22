@@ -13,7 +13,8 @@ function onDisconnect(socket) {
 
 // When the user connects.. perform this
 function onConnect(socket) {
-    // On Socket DisConnect
+    // On Socket Connect
+    require('../api/data/data.socket').register(socket);
 }
 
 module.exports = function(socketio) {
