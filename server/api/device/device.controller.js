@@ -49,14 +49,17 @@ exports.show = function (req, res, next) {
 * Update a device
 */
 exports.update = function (req, res, next) {
-    var device = req.body;
-    device.createdBy = req.user._id;
+    var updatedDeviceData = req.body;
+    updatedDeviceData.createdBy = req.user._id;
+    var deviceId = req.params.id;
     Device.findOne({
         _id: deviceId,
         createdBy: req.user._id
     }, function (err, device) {
         if (err) return res.status(500).send(err);
         if (!device) return res.status(404).end();
+        // Update data (macAddress cannot change)
+        device.name = updatedDeviceData.name;
         device.save(function (err, updatedDevice) {
             if (err) return res.status(500).send(err);
             return res.status(200).json(updatedDevice);
