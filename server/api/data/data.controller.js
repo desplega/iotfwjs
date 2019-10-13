@@ -29,6 +29,7 @@ exports.create = function (req, res, next) {
     if (data.topic === 'led') {
         // Not required to create data, only to notify the device
         require('../../mqtt/index.js').sendLEDData(data.data.l); // send led value
+        return res.status(200).json({});
     } else {
         Data.create(data, function (err, _data) {
             if (err) return res.status(500).send(err);
