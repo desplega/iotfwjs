@@ -15,7 +15,7 @@ function onSave(doc) {
     // Ensure client is connected
 	if(socket) {
         // Send data to only the intended device
-        socket.emit('data:save:' + doc.macAddress, doc);
+        socket.emit('data:save:' + doc.number, doc);
     }
 }
 

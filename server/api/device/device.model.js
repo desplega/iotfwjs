@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var DeviceSchema = new Schema({
     name: String,
-    macAddress: String,
+    number: String,
+    location: String,
     createdBy: {
         type: String,
         default: 'user'

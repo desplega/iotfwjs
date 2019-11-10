@@ -21,22 +21,25 @@ client.on('connect', function () {
 });
 
 client.on('message', function (topic, message) {
-    // message is Buffer
-    // console.log('Topic >> ', topic);
-    // console.log('Message >> ', message.toString());
     if (topic === 'api-engine') {
-        var macAddress = message.toString();
-        console.log('Mac Address >> ', macAddress);
-        client.publish('rpi', 'Got Mac Address: ' + macAddress);
+        var number = message.toString();
+        console.log('Device number >> ', number);
+        client.publish('rpi', 'Got device number: ' + number);
     } else if (topic === 'dht11') {
-        var data = JSON.parse(message.toString());
-        // create a new data record for the device
-        Data.create(data, function (err, data) {
-            if (err) return console.error(err);
-            // if the record has been saved successfully,
-            // websockets will trigger a message to the web-app
-            console.log('Data Saved :', data.data);
-        });
+        try {
+            var data = JSON.parse(message.toString());
+            // Pending to add a json scheme validator!
+            // create a new data record for the device
+            console.log('Message received from: ', data.number);
+            Data.create(data, function (err, data) {
+                if (err) return console.error(err);
+                // if the record has been saved successfully,
+                // websockets will trigger a message to the web-app
+                console.log('Data Saved :', data.data);
+            });
+        } catch (e) {
+            console.log('Incorrect message. Discarded...');
+        }
     } else {
         console.log('Unknown topic', topic);
     }

@@ -58,8 +58,9 @@ exports.update = function (req, res, next) {
     }, function (err, device) {
         if (err) return res.status(500).send(err);
         if (!device) return res.status(404).end();
-        // Update data (macAddress cannot change)
+        // Update data (device number cannot change)
         device.name = updatedDeviceData.name;
+        device.location = updatedDeviceData.location;
         device.save(function (err, updatedDevice) {
             if (err) return res.status(500).send(err);
             return res.status(200).json(updatedDevice);

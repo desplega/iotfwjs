@@ -6,11 +6,11 @@ var Data = require('./data.model');
 * Get Data for a device
 */
 exports.index = function(req, res) {
-    var macAddress = req.params.deviceId;
+    var number = req.params.number;
     var limit = parseInt(req.params.limit) || 30;
     Data
     .find({
-        macAddress: macAddress
+        number: number
     })
     .sort({'createdAt': -1})
     .limit(limit)

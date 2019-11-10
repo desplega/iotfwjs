@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var DataSchema = new Schema({
-    macAddress: {
+    number: {
         type: String
     },
     data: {
@@ -12,7 +12,7 @@ var DataSchema = new Schema({
     },
     createdBy: {
         type: String,
-        default: 'raspberrypi3'
+        default: 'LoRa Radio Node'
     },
     createdAt: {
         type: Date
