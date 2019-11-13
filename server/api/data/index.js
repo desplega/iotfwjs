@@ -6,7 +6,7 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
-router.get('/:deviceId/:limit', auth.isAuthenticated(), controller.index);
+router.get('/:number/:limit', auth.isAuthenticated(), controller.index);
 router.post('/', auth.isAuthenticated(), controller.create);
 
 module.exports = router;
