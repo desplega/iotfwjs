@@ -13,8 +13,10 @@ exports.register = function (_socket) {
 
 function onSave(doc) {
     // Ensure client is connected
-	if(socket) {
-        // Send data to only the intended device
+	if (socket) {
+        // Sending to all clients except sender
+        socket.broadcast.emit('data:save:' + doc.number, doc);
+        // Sending to the client
         socket.emit('data:save:' + doc.number, doc);
     }
 }
