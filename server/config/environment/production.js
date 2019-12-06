@@ -3,21 +3,15 @@
 // Production specific configuration
 // =================================
 module.exports = {
-  // Server IP
-  ip:       process.env.OPENSHIFT_NODEJS_IP ||
-            process.env.IP ||
-            undefined,
-
-  // Server port
-  port:     process.env.OPENSHIFT_NODEJS_PORT ||
-            process.env.PORT ||
-            8080,
-
   // MongoDB connection options
   mongo: {
-    uri:    process.env.MONGOLAB_URI ||
-            process.env.MONGOHQ_URL ||
-            process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
-            'mongodb://localhost/testscaffold'
+    uri: 'mongodb://localhost/iotfwjs'
+  },
+
+  // MQTT server options
+  mqtt: {
+    host: 'mqtt.desplega.com',
+    clientId: 'API_Server_Dev',
+    port: 8883
   }
 };
