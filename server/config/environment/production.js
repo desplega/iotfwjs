@@ -5,7 +5,11 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/iotfwjs'
+    uri: 'mongodb://mongodb/iotfwjs-test',
+    options: {
+      user: 'iotfwjs-user',
+      pass: 'm4ng4db'
+    }
   },
 
   // MQTT server options
