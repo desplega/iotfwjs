@@ -1,4 +1,4 @@
-odule.exports = {
+module.exports = {
   apps : [{
     name: 'iotfwjs-test',
     script: 'server/app.js',
