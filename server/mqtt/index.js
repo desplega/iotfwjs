@@ -16,16 +16,16 @@ var client = mqtt.connect({
 
 client.on('connect', function () {
     console.log('Connected to Mosquitto at ' + config.mqtt.host + ' on port ' + config.mqtt.port);
-    client.subscribe('api-engine');
-    client.subscribe('dht11');
+    client.subscribe('gateway');
+    client.subscribe('sensors');
 });
 
 client.on('message', function (topic, message) {
-    if (topic === 'api-engine') {
+    if (topic === 'gateway') {
         var number = message.toString();
-        console.log('Device number >> ', number);
-        client.publish('rpi', 'Got device number: ' + number);
-    } else if (topic === 'dht11') {
+        console.log('Gateway number >> ', number);
+        client.publish('api-engine', 'Got gateway number: ' + number);
+    } else if (topic === 'sensors') {
         try {
             var data = JSON.parse(message.toString());
             // Pending to add a json scheme validator!
