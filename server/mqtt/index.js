@@ -27,7 +27,11 @@ client.on('message', function (topic, message) {
         client.publish('api-engine', 'Got gateway number: ' + number);
     } else if (topic === 'sensors') {
         try {
-            var data = JSON.parse(message.toString());
+            var msg = message.toString();
+            // Remove initial and final "'" if present
+            msg = msg.replace(/\'/g,'');
+            // Check it is a valid message in JSON format
+            var data = JSON.parse(msg);
             // Pending to add a json scheme validator!
             // create a new data record for the device
             console.log('Message received from: ', data.number);
