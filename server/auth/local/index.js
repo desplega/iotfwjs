@@ -13,11 +13,12 @@ router.post('/', function(req, res, next) {
         if (!user) return res.status(404).json({ message: 'Something went wrong, please try again.' });
 
         var token = auth.signToken(user._id, user.role);
+        var refreshToken = auth.signRefreshToken(user._id);
         user.__v = undefined;
         user.provider = undefined;
         user.hashedPassword = undefined;
         user.salt = undefined;
-        res.json({ user: user, token: token });
+        res.json({ user: user, token: token, 'refresh-token': refreshToken });
     })(req, res, next)
 });
 

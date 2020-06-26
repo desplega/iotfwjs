@@ -31,13 +31,16 @@ exports.create = function(req, res, next) {
     User.create(newUser, function(err, user) {
         if (err) return errorHandler(res, err);
         var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-            expiresIn: 60 * 60 * 24
+            expiresIn: config.expirationTimes.session
+        });
+        var refreshToken = jwt.sign({ _id: user._id }, config.secrets.session, {
+            expiresIn: config.expirationTimes.session
         });
         newUser.__v = undefined;
         newUser.provider = undefined;
         newUser.hashedPassword = undefined;
         newUser.salt = undefined;
-        res.json({ user: newUser, token: token });
+        res.json({ user: newUser, token: token, 'refresh-token': refreshToken });
     });
 };
 

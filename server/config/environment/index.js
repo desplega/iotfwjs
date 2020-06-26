@@ -26,7 +26,14 @@ var all = {
 
     // Secret for session, you will want to change this and make it an environment variable
     secrets: {
-        session: 'test-scaffold-secret'
+        session: 'haNdf9&jfOadsfj3j2A20fds0jfUTjxO',
+        refresh: '8dk4w0AgG4kgjTYm;dkaLkf850pbjsdz'
+    },
+
+    // Expiration time of tokens (in seconds)
+    expirationTimes: {
+        session: 15,
+        refresh: 60 * 60 * 24 * 2
     },
 
     // List of user roles

@@ -32,11 +32,12 @@ module.exports = function(app) {
 
     function corsEnabler(req, res, next) {
         // CORS headers
-        res.header('Access-Control-Allow-Origin', req.headers.origin || '*'); // restrict it to the required domain
+        res.header('Access-Control-Allow-Origin', req.headers.origin || '*'); // Restrict it to the required domain
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
         // Set custom headers for CORS
-        res.header('Access-Control-Allow-Headers', 'Content-type,Accept,Authorization');
-        res.header("Access-Control-Allow-Credentials", true);
+        res.header('Access-Control-Allow-Headers', 'Content-type,Accept,access-token,refresh-token');
+        //res.header('Access-Control-Expose-Headers', 'access-token,refresh-token');
+        res.header('Access-Control-Allow-Credentials', true);
         if (req.method == 'OPTIONS') {
             res.status(204).end();
         } else {
